@@ -1,0 +1,22 @@
+.main-footer{
+color: white;
+background-color:  rgb(128, 0, 53);
+padding-top: 0.05em;
+position: relative;
+bottom: 0;
+width: 100%;
+font-family: 'Indie Flower' , cursive;
+
+
+
+}
+.row{
+    display:flex ;
+flex-direction: row;
+}
+.call{
+    padding-left: 30em;
+}
+.list-unstyled{
+    font-weight: bold;
+}

@@ -1,0 +1,91 @@
+
+
+.loginbox{
+width: 350px;
+height: 450px;
+background:rgb(102, 3, 44);
+
+color: ivory;
+top: 100%;
+left: 50%;
+position: relative;
+transform: translate(-50%,-50%);
+box-sizing: border-box;
+padding: 70px 30px;
+margin-top: 10cm;
+
+}
+h1
+{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 22px;
+    font-family: 'Indie Flower' , cursive;
+    font-style: initial;
+}
+.loginbox p {
+margin: 0;
+padding: 0;
+font-family: 'Indie Flower' , cursive;
+}
+
+.loginbox input {
+width: 100%;
+margin-bottom: 20px;
+font-family: 'Indie Flower' , cursive;
+
+}
+
+
+.loginbox input [ type = "text"] , input[type ="password"]
+{
+  border: none;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #fff;
+  font-size: 16px;
+  font-family: 'Indie Flower' , cursive;
+}
+
+.button
+{
+border: none;
+outline: none;
+height: 40px;
+background:#bd70a8;
+color: #fff;
+font-size: 18px;
+border-radius: 20px;
+font-family: 'Indie Flower' , cursive;
+font-weight: bold;
+width: 100%;
+margin-bottom: 20px;
+}
+
+.button:hover
+{
+    cursor: pointer;
+    background: #ec087a;
+    color: #000;
+}
+
+.loginbox a{
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 20px;
+    color: rgb(206, 194, 201); 
+   font-family: 'Indie Flower' , cursive;
+   font-weight: bold;
+}
+
+.loginbox a:hover{
+color:#bd70a8;;
+
+}
+.responsive{
+   margin-left: auto;
+   margin-right: auto;
+}
