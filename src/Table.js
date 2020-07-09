@@ -41,6 +41,10 @@ HRuUJt7lX34HhWdO9Ec/4418xr1p6edA151k3GRTc4klmxQmWGkpCkED4Bm0P8IypHnpTNg3E/wBotlZ
             <td>1300</td>
           </tr>
           <tr>
+            <td>mum</td>
+            <td>1290</td>
+          </tr>
+          <tr>
             <td>plus one</td>
             <td>1280</td>
           </tr>
