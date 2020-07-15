@@ -11,12 +11,16 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Admin from "./Admin";
+import apiClass from "./apiClass";
+import apiClass2 from "./apiClass2";
 function App() {
   const Home = () => (
     <div>
       <AddMovie />
       <MovieList />
+     
       <Counter />
+      
     </div>
   );
   return (
@@ -26,6 +30,8 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />
+          <Route path="/api" component={apiClass} />
+          <Route path="/api2" component={apiClass2} />
           <ProtectedRoute exact path="/Applayout" component={Admin} />
         </Switch>
       </Router>

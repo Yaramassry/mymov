@@ -116,14 +116,14 @@ render(){
          <div>
            
                
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 
-             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                 <form class="form-inline my-2 my-lg-0">
+             <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                 <form className="form-inline my-2 my-lg-0">
                    
                  
 
-                 <div class="alert alert-success alert-dismissable">
+                 <div className="alert alert-success alert-dismissable">
                 
                     <a href="#" className="close" data-dismiss="alert" aria-label="close" >&times;</a>
                     <strong>Info  !</strong> inter film name
@@ -141,38 +141,38 @@ render(){
                
 
 
-            <ul class="navbar-nav mr-auto">
+            <ul className="navbar-nav mr-auto">
               
-                <li class="nav-item dropdown">
-                  <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                <li className="nav-item dropdown">
+                  <a  className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      Types of Films
                          </a>
-                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Comedy</a>
+                         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a className="dropdown-item" href="#">Comedy</a>
                                     
                                         <ul>
-                                            <li class="nav-item dropdown"><a href="#">Dump and Dumper</a></li>
-                                            <li class="nav-item dropdown"><a href="#">Ted</a></li>
-                                            <li class="nav-item dropdown"><a href="#">Plus One</a></li>
+                                            <li className="nav-item dropdown"><a href="#">Dump and Dumper</a></li>
+                                            <li className="nav-item dropdown"><a href="#">Ted</a></li>
+                                            <li className="nav-item dropdown"><a href="#">Plus One</a></li>
                                         </ul>
                                 
 
-                            <a class="dropdown-item" href="#">Action</a>
+                            <a className="dropdown-item" href="#">Action</a>
                                             <ul>
-                                            <li class="nav-item dropdown"><a href="#">Harry Potter</a></li>
-                                            <li class="nav-item dropdown"><a href="#">Game of thrones</a></li>
-                                            <li class="nav-item dropdown"><a href="#">Lacaca</a></li>
+                                            <li className="nav-item dropdown"><a href="#">Harry Potter</a></li>
+                                            <li className="nav-item dropdown"><a href="#">Game of thrones</a></li>
+                                            <li className="nav-item dropdown"><a href="#">Lacaca</a></li>
                                         </ul>
                                         
-                            <a class="dropdown-item" href="#">Romantic</a>
+                            <a className="dropdown-item" href="#">Romantic</a>
                                         <ul>
-                                            <li class="nav-item dropdown"><a href="#">Titanic</a></li>
+                                            <li className="nav-item dropdown"><a href="#">Titanic</a></li>
                                         </ul>
-                            <a class="dropdown-item" href="#">Drama</a>
+                            <a className="dropdown-item" href="#">Drama</a>
                                         <ul>
-                                            <li class="nav-item dropdown"><a href="#">Merage</a></li>
-                                            <li class="nav-item dropdown"><a href="#">MyDad</a></li>
+                                            <li className="nav-item dropdown"><a href="#">Merage</a></li>
+                                            <li className="nav-item dropdown"><a href="#">MyDad</a></li>
                                         </ul>
                     </div>
                   </li>
