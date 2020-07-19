@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 class Login extends Component {
   handleSubmit = (event) => {
-    event.preventDefault();
+   // event.preventDefault();
     const password = document.getElementById("password");
     //const form= document.getElementById('form');
     const errorElement = document.getElementById("error");

@@ -1,4 +1,6 @@
 import React from "react";
+import login from "./login/login.css";
+import auth from "./auth";
 
 const lstyle ={
     color:'black',
@@ -6,19 +8,39 @@ const lstyle ={
     fontSize: 100,
     };
 
+  
+
 export default class apiClass extends React.Component{
     state = {
         loading : true,
         ratesarr:[],
        
     }
+    handleSubmit = (event) => {
+        let arr= this.state.ratesarr ;
+        let messages = [];
+        const start = document.getElementById("start");
+        const end = document.getElementById("end");
+        let  s=start.value;
+        let e=end.value;
+        if(!this.state.ratesarr.length ==0)
+    {
+           auth.login();
+            console.log("yy");
+            messages.push("hi admin!");
+            this.props.history.push("/apiClass2");
+          
+    }
+        
+            }
+    
 
     async componentDidMount(){
-        const url ="https://api.exchangeratesapi.io/history?start_at=2018-01-01&end_at=2018-09-01&symbols=ILS,JPY";
+        const url ="https://api.exchangeratesapi.io/history?start_at=s&end_at=e&symbols=ILS,JPY";
         const response = await fetch(url);
         const d = await response.json();
         this.setState({ratesarr:d.rates, loading:false});
-        const arr=this.state.ratesarr;
+       // const arr=this.state.ratesarr;
        
        console.log(d);
     }
@@ -32,41 +54,65 @@ render(){
         return <div style={lstyle}>loading...</div>
   }
 
-   /* if(!this.state.ratesarr.length ){
+  /*if(this.state.ratesarr.length ==0){
         return <div style={lstyle}>there is no result</div>
     }*/
 
 
-    let arr= this.state.ratesarr ;
+  
 
-       
     
+ return (
+     <div className="loginbox">
+    <form method="GET" id="form">
+  
+          <h1>start at : </h1>
+          <input
+            id="start"
+            type="date"
+            name=""
+           required
+          />
+          <br/>
+          
+          <h1>End at : </h1>
+          <input
+            id="end"
+            type="date"
+            name=""
+            required
+          />
+          <br/><br/>
+          <button className="button" type="submit" onClick={this.handleSubmit} >
+           GO
+          </button>
 
 
-    return (
-        
-        
-        <div>
-    
-    {arr.map(r=>(
 
-         <div  style={lstyle}>
-                
-                
-               <div>{r.date}</div>
-                <div>{r.rates.ILS}</div>
-                <div>{r.rates.JPY}</div>
-                <div>{r.base}</div>
-                           
-
-         </div>
-
-
-    ))}
-    </div>)
+    </form>
+   </div>
+)
   
 }
 
 
 
 }
+/*<div>
+    
+{Object.entries(arr).map(([date,value])=>(
+
+     <div  style={lstyle}>
+            
+            
+           <div>{date}</div>
+            <div>{value.ILS}</div>
+            <div>{value.JPY}</div>
+            <div>EUR</div>
+                       
+
+     </div>
+
+
+))}
+</div>*/
