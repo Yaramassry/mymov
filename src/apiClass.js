@@ -16,13 +16,14 @@ export default class apiClass extends React.Component{
         ratesarr:[],
        
     }
+ 
     handleSubmit = (event) => {
+        event.preventDefault();
+      
         let arr= this.state.ratesarr ;
         let messages = [];
-        const start = document.getElementById("start");
-        const end = document.getElementById("end");
-        let  s=start.value;
-        let e=end.value;
+        
+      
         if(!this.state.ratesarr.length ==0)
     {
            auth.login();
@@ -36,7 +37,14 @@ export default class apiClass extends React.Component{
     
 
     async componentDidMount(){
-        const url ="https://api.exchangeratesapi.io/history?start_at=s&end_at=e&symbols=ILS,JPY";
+        
+        const start = document.getElementById("start");
+        const end = document.getElementById("end");
+        let  s=start.value;
+        let e=end.value;
+    
+         
+        const url ="https://api.exchangeratesapi.io/history?start_at=${s}&end_at=${e}&symbols=ILS,JPY";
         const response = await fetch(url);
         const d = await response.json();
         this.setState({ratesarr:d.rates, loading:false});
@@ -47,12 +55,10 @@ export default class apiClass extends React.Component{
 
 render(){
 
-  
-
-
-    if (this.state.loading) { 
+   
+    if (this.state.loading)  
         return <div style={lstyle}>loading...</div>
-  }
+  
 
   /*if(this.state.ratesarr.length ==0){
         return <div style={lstyle}>there is no result</div>
@@ -95,9 +101,9 @@ render(){
   
 }
 
-
-
 }
+
+
 /*<div>
     
 {Object.entries(arr).map(([date,value])=>(
