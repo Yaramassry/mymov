@@ -8,70 +8,83 @@ const lstyle ={
     fontSize: 100,
     };
 
-  
+
 
 export default class apiClass extends React.Component{
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
     state = {
         loading : true,
         ratesarr:[],
-       
+
     }
- 
-    handleSubmit = (event) => {
+
+    async handleSubmit(event){
         event.preventDefault();
-      
-        let arr= this.state.ratesarr ;
+        const start = document.getElementById("start");
+        const end = document.getElementById("end");
+        let  s=start.value;
+        let e=end.value;
+
+
+        const url =`https://api.exchangeratesapi.io/history?start_at=${s}&end_at=${e}&symbols=ILS,JPY`;
+        const response = await fetch(url);
+        const d = await response.json();
+        this.setState({ratesarr:d.rates, loading:false});
+        let arr= d.rates ;
         let messages = [];
-        
-      
-        if(!this.state.ratesarr.length ==0)
+
+
+        if(!arr.length ==0)
     {
            auth.login();
             console.log("yy");
             messages.push("hi admin!");
             this.props.history.push("/apiClass2");
-          
+
     }
-        
+
             }
-    
+
 
     async componentDidMount(){
-        
-        const start = document.getElementById("start");
+
+        /*const start = document.getElementById("start");
         const end = document.getElementById("end");
         let  s=start.value;
         let e=end.value;
-    
-         
+
+
         const url ="https://api.exchangeratesapi.io/history?start_at=${s}&end_at=${e}&symbols=ILS,JPY";
         const response = await fetch(url);
-        const d = await response.json();
-        this.setState({ratesarr:d.rates, loading:false});
+        const d = await response.json();*/
+        this.setState({loading:false});
        // const arr=this.state.ratesarr;
-       
-       console.log(d);
+
+       //console.log(d);
     }
 
 render(){
 
-   
-    if (this.state.loading)  
+
+    if (this.state.loading)
         return <div style={lstyle}>loading...</div>
-  
+
 
   /*if(this.state.ratesarr.length ==0){
         return <div style={lstyle}>there is no result</div>
     }*/
 
 
-  
 
-    
+
+
  return (
      <div className="loginbox">
     <form method="GET" id="form">
-  
+
           <h1>start at : </h1>
           <input
             id="start"
@@ -80,7 +93,7 @@ render(){
            required
           />
           <br/>
-          
+
           <h1>End at : </h1>
           <input
             id="end"
@@ -98,24 +111,24 @@ render(){
     </form>
    </div>
 )
-  
+
 }
 
 }
 
 
 /*<div>
-    
+
 {Object.entries(arr).map(([date,value])=>(
 
      <div  style={lstyle}>
-            
-            
+
+
            <div>{date}</div>
             <div>{value.ILS}</div>
             <div>{value.JPY}</div>
             <div>EUR</div>
-                       
+
 
      </div>
 

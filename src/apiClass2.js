@@ -7,7 +7,46 @@ const lstyle ={
     };
 
 export default class apiClass extends React.Component{
-    state = {
+    render(){
+
+        return(
+    <div>
+    {Object.entries(arr).map(([date,value])=>(
+
+        <div  style={lstyle}>
+               
+               
+              <div>{date}</div>
+               <div>{value.ILS}</div>
+               <div>{value.JPY}</div>
+               <div>EUR</div>
+                          
+   
+        </div>
+   
+   
+   ))}
+   </div>
+        )}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* state = {
         loading : true,
         rate:null,
         rate2:null,
@@ -78,7 +117,7 @@ render(){
                
                 </div>
     </div>
-}
+}*/
 
 
 
