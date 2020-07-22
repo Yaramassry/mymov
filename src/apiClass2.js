@@ -6,25 +6,26 @@ const lstyle ={
     fontSize: 100,
     };
 
-export default class apiClass extends React.Component{
+export default class apiClass2 extends React.Component{
     render(){
-
+      let arr = this.state.ratesarr;
+      console.log(arr);
         return(
     <div>
     {Object.entries(arr).map(([date,value])=>(
 
         <div  style={lstyle}>
-               
-               
+
+
               <div>{date}</div>
                <div>{value.ILS}</div>
                <div>{value.JPY}</div>
                <div>EUR</div>
-                          
-   
+
+
         </div>
-   
-   
+
+
    ))}
    </div>
         )}
@@ -75,7 +76,7 @@ export default class apiClass extends React.Component{
     }
 
 render(){
-    if (this.state.loading) { 
+    if (this.state.loading) {
         return <div style={lstyle}>loading...</div>
   }
 
@@ -85,27 +86,27 @@ render(){
 
 
     return <div style={lstyle}>
-        
+
          <div>
                 <div>{this.state.date}</div>
                 <div>{this.state.rate.HRK}</div>
                 <div>{this.state.base}</div>
-                
+
                 </div>
                 <br/>
                 <div>
                 <div>{this.state.date2}</div>
                 <div>{this.state.rate2.HRK}</div>
                 <div>{this.state.base2}</div>
-                
+
                 </div>
-                
+
                 <br/>
                 <div>
                 <div>{this.state.date3}</div>
                 <div>{this.state.rate3.HRK}</div>
                 <div>{this.state.base3}</div>
-               
+
                 </div>
 
                 <br/>
@@ -114,7 +115,7 @@ render(){
                 <div>{this.state.rate4.USD}</div>
                 <div>{this.state.rate4.GBP}</div>
                 <div>{this.state.base4}</div>
-               
+
                 </div>
     </div>
 }*/

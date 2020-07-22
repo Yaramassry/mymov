@@ -14,12 +14,14 @@ export default class apiClass extends React.Component{
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-    state = {
+    this.state = {
         loading : true,
         ratesarr:[],
+        fetched: false
 
     }
+  }
+
 
     async handleSubmit(event){
         event.preventDefault();
@@ -32,19 +34,15 @@ export default class apiClass extends React.Component{
         const url =`https://api.exchangeratesapi.io/history?start_at=${s}&end_at=${e}&symbols=ILS,JPY`;
         const response = await fetch(url);
         const d = await response.json();
-        this.setState({ratesarr:d.rates, loading:false});
+        this.setState({ratesarr:d.rates, loading:false, fetched: true});
         let arr= d.rates ;
         let messages = [];
 
 
-        if(!arr.length ==0)
-    {
            auth.login();
             console.log("yy");
             messages.push("hi admin!");
-            this.props.history.push("/apiClass2");
-
-    }
+            //this.props.history.push("/api2", {state: this.state});
 
             }
 
@@ -71,11 +69,30 @@ render(){
 
     if (this.state.loading)
         return <div style={lstyle}>loading...</div>
+        console.log("ratesarr");
+  console.log(this.state.ratesarr);
+  if(this.state.fetched){
+    let arr = this.state.ratesarr;
+    console.log(arr);
+      return(
+  <div>
+  {Object.entries(arr).map(([date,value])=>(
+
+      <div  style={lstyle}>
 
 
-  /*if(this.state.ratesarr.length ==0){
-        return <div style={lstyle}>there is no result</div>
-    }*/
+            <div>{date}</div>
+             <div>{value.ILS}</div>
+             <div>{value.JPY}</div>
+             <div>EUR</div>
+
+
+      </div>
+
+
+ ))}
+ </div>
+      )}
 
 
 
