@@ -1,6 +1,7 @@
 import React from "react";
 import login from "./login/login.css";
 import auth from "./auth";
+import { Line } from 'react-chartjs-2';
 
 const lstyle ={
     color:'black',
@@ -15,10 +16,16 @@ export default class apiClass extends React.Component{
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-        p: "EUR",
+        b: "CAD",
         loading : true,
         ratesarr:[],
-        fetched: false
+        fetched: false,
+        data: {
+          labels: [1, 2, 3],
+          datasets: [{
+              data: [5, 6, 7]
+          }]
+      }
 
     }
   }
@@ -28,15 +35,30 @@ export default class apiClass extends React.Component{
        event.preventDefault();
         const start = document.getElementById("start");
         const end = document.getElementById("end");
-        const pp =document.getElementById("symbol");
+        const pp =document.getElementById("symbol").value;
+        const bb =document.getElementById("B").value;
         let  s=start.value;
         let e=end.value;
 
 
-        const url =`https://api.exchangeratesapi.io/history?start_at=${s}&end_at=${e}&symbols=${this.state.p}`;
+        const url =`https://api.exchangeratesapi.io/history?start_at=${s}&end_at=${e}&base=${this.state.b}&symbols=${pp}`;
         const response = await fetch(url);
         const d = await response.json();
-        this.setState({ratesarr:d.rates, loading:false, fetched: true , p:pp});
+        const labels = Object.keys(d.rates);
+        const valuePairs = Object.values(d.rates);
+        var values = []
+        for (var x in valuePairs) {
+          values.push(valuePairs[x][pp])
+        }
+
+        const data = {
+          labels: labels,
+          datasets: [{
+              data: values
+            }
+          ]
+        }
+        this.setState({ratesarr:d.rates, loading:false, fetched: true, data: data , b:bb});
         let arr= d.rates ;
         let messages = [];
 
@@ -78,15 +100,16 @@ render(){
     console.log(arr);
       return(
   <div>
+  <Line data={this.state.data} />
   {Object.entries(arr).map(([date,value])=>(
 
       <div  style={lstyle}>
 
 
             <div>{date}</div>
-            
-             
-             <div>EUR</div>
+
+
+             <div>{this.state.b}</div>
 
 
       </div>
@@ -129,6 +152,15 @@ render(){
             name=""
             required
           />
+            
+
+            <h1>BASE : </h1>
+            <input
+              id="B"
+              type="text"
+              name=""
+              required
+            />
           <br/><br/>
           <button className="button" type="submit" onClick={this.handleSubmit} >
            GO
