@@ -2,6 +2,8 @@ import React from "react";
 import login from "./login/login.css";
 import auth from "./auth";
 import { Line } from 'react-chartjs-2';
+import { ToastContainer , toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const lstyle ={
     color:'black',
@@ -39,9 +41,44 @@ export default class apiClass extends React.Component{
         const bb =document.getElementById("B").value;
         let  s=start.value;
         let e=end.value;
+        let messages = [];
+
+        const start_at = new Date(s);
+        const end_at = new Date(e);
+     
 
 
-        const url =`https://api.exchangeratesapi.io/history?start_at=${s}&end_at=${e}&base=${this.state.b}&symbols=${pp}`;
+
+      if(pp==""|| bb==""|| s==""|| e==""){
+
+        toast.error("please select StartDate ((and)) EndDate ((and)) Symbol ((and)) Base " , {position:"top-center"});
+        return;
+        }
+
+
+        if (start_at > end_at) {
+          toast.error("Please start date must be before end date", {
+            position: "top-center"
+          });
+          return;
+        } 
+
+
+
+
+
+
+        const url =`https://api.exchangeratesapi.io/history?start_at=${s}&end_at=${e}&base=${bb}&symbols=${pp}`;
+
+        /*let msg = [];
+        if (s==null || s==='') {
+          console.log("jhhj");
+          //alert('date is empty');
+        
+          messages.push("Enter your name please!!");
+         
+        }*/
+
         const response = await fetch(url);
         const d = await response.json();
         const labels = Object.keys(d.rates);
@@ -58,9 +95,13 @@ export default class apiClass extends React.Component{
             }
           ]
         }
+      
+    
+
+
         this.setState({ratesarr:d.rates, loading:false, fetched: true, data: data , b:bb});
         let arr= d.rates ;
-        let messages = [];
+       
 
 
            auth.login();
@@ -68,6 +109,7 @@ export default class apiClass extends React.Component{
             messages.push("hi admin!");
             //this.props.history.push("/api2", {state: this.state});
 
+        
             }
 
 
@@ -89,7 +131,13 @@ export default class apiClass extends React.Component{
     }
 
 render(){
+  const array= this.state.ratesarr;
+  var rat = [];
+  for (var x in array) {
 
+    
+  }
+  const pp =document.getElementById("symbol");
  // console.log(p);
     if (this.state.loading)
         return <div style={lstyle}>loading...</div>
@@ -101,13 +149,17 @@ render(){
       return(
   <div>
   <Line data={this.state.data} />
-  {Object.entries(arr).map(([date,value])=>(
+
+
+
+  
+ {Object.entries(arr).map(([date,va])=>(
 
       <div  style={lstyle}>
 
 
             <div>{date}</div>
-
+          
 
              <div>{this.state.b}</div>
 
@@ -116,6 +168,14 @@ render(){
 
 
  ))}
+
+
+
+
+
+
+
+
  </div>
       )}
 
@@ -131,7 +191,7 @@ render(){
           <input
             id="start"
             type="date"
-            name=""
+            name="Date"
            required
           />
           <br/>
@@ -169,6 +229,8 @@ render(){
 
 
     </form>
+
+    <ToastContainer position="top-center"/>
    </div>
 )
 
