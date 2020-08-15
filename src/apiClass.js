@@ -45,7 +45,7 @@ export default class apiClass extends React.Component{
 
         const start_at = new Date(s);
         const end_at = new Date(e);
-     
+
 
 
 
@@ -61,7 +61,7 @@ export default class apiClass extends React.Component{
             position: "top-center"
           });
           return;
-        } 
+        }
 
 
 
@@ -74,9 +74,9 @@ export default class apiClass extends React.Component{
         if (s==null || s==='') {
           console.log("jhhj");
           //alert('date is empty');
-        
+
           messages.push("Enter your name please!!");
-         
+
         }*/
 
         const response = await fetch(url);
@@ -95,13 +95,13 @@ export default class apiClass extends React.Component{
             }
           ]
         }
-      
-    
+
+
 
 
         this.setState({ratesarr:d.rates, loading:false, fetched: true, data: data , b:bb});
         let arr= d.rates ;
-       
+
 
 
            auth.login();
@@ -109,7 +109,7 @@ export default class apiClass extends React.Component{
             messages.push("hi admin!");
             //this.props.history.push("/api2", {state: this.state});
 
-        
+
             }
 
 
@@ -135,7 +135,7 @@ render(){
   var rat = [];
   for (var x in array) {
 
-    
+
   }
   const pp =document.getElementById("symbol");
  // console.log(p);
@@ -152,14 +152,14 @@ render(){
 
 
 
-  
+
  {Object.entries(arr).map(([date,va])=>(
 
       <div  style={lstyle}>
 
 
             <div>{date}</div>
-          
+
 
              <div>{this.state.b}</div>
 
@@ -210,18 +210,55 @@ render(){
             id="symbol"
             type="text"
             name=""
+            list="currencies"
             required
           />
-            
+
 
             <h1>BASE : </h1>
             <input
               id="B"
               type="text"
               name=""
+              list="currencies"
               required
             />
           <br/><br/>
+          <datalist id="currencies">
+            <option value="CAD"></option>
+            <option value="HKD"></option>
+            <option value="ISK"></option>
+            <option value="PHP"></option>
+            <option value="DKK"></option>
+            <option value="HUF"></option>
+            <option value="CZK"></option>
+            <option value="AUD"></option>
+            <option value="RON"></option>
+            <option value="SEK"></option>
+            <option value="IDR"></option>
+            <option value="INR"></option>
+            <option value="BRL"></option>
+            <option value="RUB"></option>
+            <option value="HRK"></option>
+            <option value="JPY"></option>
+            <option value="THB"></option>
+            <option value="CHF"></option>
+            <option value="SGD"></option>
+            <option value="PLN"></option>
+            <option value="BGN"></option>
+            <option value="TRY"></option>
+            <option value="CNY"></option>
+            <option value="NOK"></option>
+            <option value="NZD"></option>
+            <option value="ZAR"></option>
+            <option value="USD"></option>
+            <option value="MXN"></option>
+            <option value="ILS"></option>
+            <option value="GBP"></option>
+            <option value="KRW"></option>
+            <option value="MYR"></option>
+            <option value="EUR"></option>
+          </datalist>
           <button className="button" type="submit" onClick={this.handleSubmit} >
            GO
           </button>
