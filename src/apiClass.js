@@ -49,11 +49,30 @@ export default class apiClass extends React.Component{
 
 
 
-      if(pp==""|| bb==""|| s==""|| e==""){
 
-        toast.error("please select StartDate ((and)) EndDate ((and)) Symbol ((and)) Base " , {position:"top-center"});
-        return;
-        }
+
+
+        if(s==""){
+
+          toast.error("please Enter strat day !!!! " , {position:"top-center"});
+          return;
+          }
+          if(e==""){
+
+            toast.error("please Enter End day too !!!! " , {position:"top-center"});
+            return;
+            }
+
+            if(pp==""){
+
+              toast.error("where is your symbol !!!!?? " , {position:"top-center"});
+              return;
+              }
+              if(bb==""){
+
+                toast.error(" Dear user .... baase !! where is the baaase ? ? !!!" , {position:"top-center"});
+                return;
+                }
 
 
         if (start_at > end_at) {
