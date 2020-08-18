@@ -23,12 +23,14 @@ export const Admin = props => {
 
 
 
-                <div  className="col-md-5">
-                                            <button className="btn btn-primary btn-block" style={style} onClick={() => {
+                <div  className="col-md-6 col-sm-6 col-lg-6">
+                                            <button className="btn btn-primary btn-block" 
+                                            style={style}
+                                            onClick={() => {
                                                 console.log('bb');
                                                 props.history.push("/");
-                                            }}> Home </button></div>
-                <div className="col-sm-5 "> <button  className="btn btn-primary btn-block" style={style} onClick={() => {
+                                            }}>  {" "}Home  {" "}</button></div>
+                <div className="col-md-6 col-sm-6 col-lg-6 "> <button  className="btn btn-primary btn-block" style={style} onClick={() => {
                                                 console.log('bb');
                                                 props.history.push("/Login");
                                             }}> logout </button>

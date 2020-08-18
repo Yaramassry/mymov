@@ -19,11 +19,11 @@ const toolbar = props =>(
         <div className="btn btn-outline-light my-2 my-sm-0" ><h4 className="font"> MYMOV</h4></div>
          
        
-        <div className="toolbar_navigation-item"> 
+      
         
-             <h3 className="font"> <a href="/">List Of Movies </a></h3>
-       </div>
-
+   
+   
+        <h4><Link className="font" style={lstyle} to="/" >ListOfMovies </Link></h4>
        <h4><Link className="font" style={lstyle} to="/login" >Login </Link></h4>
       <h4><Link  className="font" style={lstyle} to="/appLayout" >Admin </Link></h4>
             

@@ -21,13 +21,20 @@ export default class apiClass extends React.Component{
         b: "CAD",
         loading : true,
         ratesarr:[],
+        ratesarr2:[],
         fetched: false,
         data: {
           labels: [1, 2, 3],
           datasets: [{
               data: [5, 6, 7]
           }]
-      }
+      },
+      data2: {
+        labels: [1, 2, 3],
+        datasets: [{
+            data: [5, 6, 7]
+        }]
+    }
 
     }
   }
@@ -38,6 +45,7 @@ export default class apiClass extends React.Component{
         const start = document.getElementById("start");
         const end = document.getElementById("end");
         const pp =document.getElementById("symbol").value;
+        const pp2 =document.getElementById("symbol2").value;
         const bb =document.getElementById("B").value;
         let  s=start.value;
         let e=end.value;
@@ -87,7 +95,10 @@ export default class apiClass extends React.Component{
 
 
 
-        const url =`https://api.exchangeratesapi.io/history?start_at=${s}&end_at=${e}&base=${bb}&symbols=${pp}`;
+        
+
+
+        const url =`https://api.exchangeratesapi.io/history?start_at=${s}&end_at=${e}&base=${bb}&symbols=${pp2}&symbols=${pp}`;
 
         /*let msg = [];
         if (s==null || s==='') {
@@ -100,11 +111,21 @@ export default class apiClass extends React.Component{
 
         const response = await fetch(url);
         const d = await response.json();
+        //const d2 = await response.json();
         const labels = Object.keys(d.rates);
         const valuePairs = Object.values(d.rates);
+
+        //const labels2 = Object.keys(d2.rates);
+        //const valuePairs2 = Object.values(d2.rates);
+
         var values = []
         for (var x in valuePairs) {
           values.push(valuePairs[x][pp])
+        }
+
+        var values2 = []
+        for (var x2 in valuePairs) {
+          values2.push(valuePairs[x2][pp2])
         }
 
         const data = {
@@ -115,11 +136,20 @@ export default class apiClass extends React.Component{
           ]
         }
 
+        const data2 = {
+          labels: labels,
+          datasets: [{
+              data: values2
+            }
+          ]
+        }
 
 
 
         this.setState({ratesarr:d.rates, loading:false, fetched: true, data: data , b:bb});
+        this.setState({ratesarr2:d.rates, loading:false, fetched: true, data: data2 , b:bb});
         let arr= d.rates ;
+       // let arr2= d2.rates ;
 
 
 
@@ -133,68 +163,34 @@ export default class apiClass extends React.Component{
 
 
     async componentDidMount(){
-
-        /*const start = document.getElementById("start");
-        const end = document.getElementById("end");
-        let  s=start.value;
-        let e=end.value;
+      this.setState({loading:false});
+   }
 
 
-        const url ="https://api.exchangeratesapi.io/history?start_at=${s}&end_at=${e}&symbols=ILS,JPY";
-        const response = await fetch(url);
-        const d = await response.json();*/
-        this.setState({loading:false});
-       // const arr=this.state.ratesarr;
-
-       //console.log(d);
-    }
-
+   
 render(){
   const array= this.state.ratesarr;
+  const array2= this.state.ratesarr2;
   var rat = [];
-  for (var x in array) {
-
-
-  }
+  for (var x in array) { }
+  for (var x2 in array2) { }
   const pp =document.getElementById("symbol");
  // console.log(p);
-    if (this.state.loading)
+  if (this.state.loading)
         return <div style={lstyle}>loading...</div>
         console.log("ratesarr");
+
   console.log(this.state.ratesarr);
   if(this.state.fetched){
     let arr = this.state.ratesarr;
+    let arr2 = this.state.ratesarr2;
     console.log(arr);
+    console.log(arr2);
       return(
   <div>
   <Line data={this.state.data} />
-
-
-
-
- {Object.entries(arr).map(([date,va])=>(
-
-      <div  style={lstyle}>
-
-
-            <div>{date}</div>
-
-
-             <div>{this.state.b}</div>
-
-
-      </div>
-
-
- ))}
-
-
-
-
-
-
-
-
+  <br/>
+  <Line data2={this.state.data2} />
  </div>
       )}
 
@@ -224,9 +220,17 @@ render(){
           />
             <br/>
 
-          <h1>Symbol : </h1>
+          <h1>Symbol 1: </h1>
           <input
             id="symbol"
+            type="text"
+            name=""
+            list="currencies"
+            required
+          /> 
+            <h1>Symbol 2 : </h1>
+          <input
+            id="symbol2"
             type="text"
             name=""
             list="currencies"
@@ -268,7 +272,7 @@ render(){
             <option value="TRY"></option>
             <option value="CNY"></option>
             <option value="NOK"></option>
-            <option value="NZD"></option>
+            <option value="NZD" ></option>
             <option value="ZAR"></option>
             <option value="USD"></option>
             <option value="MXN"></option>
