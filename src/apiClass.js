@@ -22,6 +22,7 @@ export default class apiClass extends React.Component{
         loading : true,
         ratesarr:[],
         ratesarr2:[],
+        ratesarr3:[],
         fetched: false,
         data: {
           labels: [1, 2, 3],
@@ -34,7 +35,14 @@ export default class apiClass extends React.Component{
         datasets: [{
             data: [5, 6, 7]
         }]
-    }
+    },
+    data3: {
+      labels: [1, 2, 3],
+      datasets: [{
+          data: [5, 6, 7]
+      }]
+  }
+
 
     }
   }
@@ -46,6 +54,7 @@ export default class apiClass extends React.Component{
         const end = document.getElementById("end");
         const pp =document.getElementById("symbol").value;
         const pp2 =document.getElementById("symbol2").value;
+        const pp3 =document.getElementById("symbol3").value;
         const bb =document.getElementById("B").value;
         let  s=start.value;
         let e=end.value;
@@ -56,39 +65,42 @@ export default class apiClass extends React.Component{
 
 
 
+             if(s==""){
+              toast.error("please Enter strat day !!!! " , {position:"top-center"});
+              return;
+              }
+              if(e==""){
+              toast.error("please Enter End day too !!!! " , {position:"top-center"});
+              return;
+              }
 
-
-
-
-        if(s==""){
-
-          toast.error("please Enter strat day !!!! " , {position:"top-center"});
-          return;
-          }
-          if(e==""){
-
-            toast.error("please Enter End day too !!!! " , {position:"top-center"});
-            return;
-            }
-
-            if(pp==""){
-
+              if(pp==""){
               toast.error("where is your symbol !!!!?? " , {position:"top-center"});
               return;
               }
+              
               if(bb==""){
-
                 toast.error(" Dear user .... baase !! where is the baaase ? ? !!!" , {position:"top-center"});
                 return;
                 }
 
+              if(pp2==""){
+                 toast.error("enter symbol in symbol2 or Re-enter the base here PLZ " , {position:"top-center"});
+                return;
+              }
 
-        if (start_at > end_at) {
-          toast.error("Please start date must be before end date", {
-            position: "top-center"
-          });
-          return;
-        }
+              if(pp3==""){
+                toast.error("enter symbol in symbol3 or Re-enter the base here PLZ " , {position:"top-center"});
+                  return;
+                  }
+
+
+
+
+              if (start_at > end_at) {
+                toast.error("Please start date must be before end date", {position: "top-center"});
+              return;
+               }
 
 
 
@@ -98,7 +110,7 @@ export default class apiClass extends React.Component{
         
 
 
-        const url =`https://api.exchangeratesapi.io/history?start_at=${s}&end_at=${e}&base=${bb}&symbols=${pp2}&symbols=${pp}`;
+        const url =`https://api.exchangeratesapi.io/history?start_at=${s}&end_at=${e}&base=${bb}&symbols=${pp2},${pp},${pp3}`;
 
         /*let msg = [];
         if (s==null || s==='') {
@@ -128,6 +140,12 @@ export default class apiClass extends React.Component{
           values2.push(valuePairs[x2][pp2])
         }
 
+        
+        var values3 = []
+        for (var x3 in valuePairs) {
+          values3.push(valuePairs[x3][pp3])
+        }
+
         const data = {
           labels: labels,
           datasets: [{
@@ -144,10 +162,19 @@ export default class apiClass extends React.Component{
           ]
         }
 
+        const data3 = {
+          labels: labels,
+          datasets: [{
+              data: values3
+            }
+          ]
+        }
 
 
-        this.setState({ratesarr:d.rates, loading:false, fetched: true, data: data , b:bb});
-        this.setState({ratesarr2:d.rates, loading:false, fetched: true, data: data2 , b:bb});
+
+        this.setState({ratesarr:d.rates,ratesarr2:d.rates,ratesarr3:d.rates, loading:false, fetched: true, data2:data2, data3:data3, 
+          data: data , b:bb});
+        //this.setState({ratesarr2:d.rates, loading:false, fetched: true, data2: data2 , b:bb});
         let arr= d.rates ;
        // let arr2= d2.rates ;
 
@@ -171,10 +198,10 @@ export default class apiClass extends React.Component{
 render(){
   const array= this.state.ratesarr;
   const array2= this.state.ratesarr2;
-  var rat = [];
-  for (var x in array) { }
-  for (var x2 in array2) { }
-  const pp =document.getElementById("symbol");
+ 
+  //for (var x in array) { }
+  //for (var x2 in array2) { }
+  //const pp =document.getElementById("symbol");
  // console.log(p);
   if (this.state.loading)
         return <div style={lstyle}>loading...</div>
@@ -190,7 +217,9 @@ render(){
   <div>
   <Line data={this.state.data} />
   <br/>
-  <Line data2={this.state.data2} />
+  <Line data={this.state.data2} />
+  <br/>
+  <Line data={this.state.data3} />
  </div>
       )}
 
@@ -231,6 +260,14 @@ render(){
             <h1>Symbol 2 : </h1>
           <input
             id="symbol2"
+            type="text"
+            name=""
+            list="currencies"
+            required
+          />
+             <h1>Symbol 3 : </h1>
+          <input
+            id="symbol3"
             type="text"
             name=""
             list="currencies"
