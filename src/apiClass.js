@@ -17,6 +17,7 @@ export default class apiClass extends React.Component{
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+   // this.handleSubmit2 = this.handleSubmit2.bind(this);
     this.state = {
         b: "CAD",
         loading : true,
@@ -41,11 +42,30 @@ export default class apiClass extends React.Component{
       datasets: [{
           data: [5, 6, 7]
       }]
-  }
+  },
+    // r:[]
 
 
     }
   }
+
+ /* async handleSubmit2(event){
+    event.preventDefault();
+    console.log("dddkkk");
+   
+    const url2='https://api.exchangeratesapi.io/latest';
+   
+    const response2 = await fetch(url2);
+   
+    const d2 = await response2.json();
+    const lab = Object.keys(d2.rates);
+    this.setState({r:d2.rates});
+    
+    console.log("ddd");
+
+  }*/
+
+
 
 
     async handleSubmit(event){
@@ -175,7 +195,7 @@ export default class apiClass extends React.Component{
         this.setState({ratesarr:d.rates,ratesarr2:d.rates,ratesarr3:d.rates, loading:false, fetched: true, data2:data2, data3:data3, 
           data: data , b:bb});
         //this.setState({ratesarr2:d.rates, loading:false, fetched: true, data2: data2 , b:bb});
-        let arr= d.rates ;
+       // let arr= d.rates ;
        // let arr2= d2.rates ;
 
 
@@ -190,12 +210,14 @@ export default class apiClass extends React.Component{
 
 
     async componentDidMount(){
+
       this.setState({loading:false});
    }
 
 
    
 render(){
+  let arr = this.state.r;
   const array= this.state.ratesarr;
   const array2= this.state.ratesarr2;
  
@@ -220,7 +242,7 @@ render(){
   <Line data={this.state.data2} />
   <br/>
   <Line data={this.state.data3} />
- </div>
+</div>
       )}
 
 
@@ -254,7 +276,8 @@ render(){
             id="symbol"
             type="text"
             name=""
-            list="currencies"
+           
+            onFocus={this.handleSubmit2}
             required
           /> 
             <h1>Symbol 2 : </h1>
@@ -265,6 +288,9 @@ render(){
             list="currencies"
             required
           />
+          <datalist id="currencies">
+      <option value="CAD"></option>
+    </datalist>
              <h1>Symbol 3 : </h1>
           <input
             id="symbol3"
@@ -284,41 +310,7 @@ render(){
               required
             />
           <br/><br/>
-          <datalist id="currencies">
-            <option value="CAD"></option>
-            <option value="HKD"></option>
-            <option value="ISK"></option>
-            <option value="PHP"></option>
-            <option value="DKK"></option>
-            <option value="HUF"></option>
-            <option value="CZK"></option>
-            <option value="AUD"></option>
-            <option value="RON"></option>
-            <option value="SEK"></option>
-            <option value="IDR"></option>
-            <option value="INR"></option>
-            <option value="BRL"></option>
-            <option value="RUB"></option>
-            <option value="HRK"></option>
-            <option value="JPY"></option>
-            <option value="THB"></option>
-            <option value="CHF"></option>
-            <option value="SGD"></option>
-            <option value="PLN"></option>
-            <option value="BGN"></option>
-            <option value="TRY"></option>
-            <option value="CNY"></option>
-            <option value="NOK"></option>
-            <option value="NZD" ></option>
-            <option value="ZAR"></option>
-            <option value="USD"></option>
-            <option value="MXN"></option>
-            <option value="ILS"></option>
-            <option value="GBP"></option>
-            <option value="KRW"></option>
-            <option value="MYR"></option>
-            <option value="EUR"></option>
-          </datalist>
+        
           <button className="button" type="submit" onClick={this.handleSubmit} >
            GO
           </button>
@@ -328,6 +320,7 @@ render(){
     </form>
 
     <ToastContainer position="top-center"/>
+
    </div>
 )
 

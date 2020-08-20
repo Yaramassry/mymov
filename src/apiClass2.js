@@ -118,8 +118,65 @@ render(){
 
                 </div>
     </div>
-}*/
+}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<option value="CAD"></option>
+<option value="HKD"></option>
+<option value="ISK"></option>
+<option value="PHP"></option>
+<option value="DKK"></option>
+<option value="HUF"></option>
+<option value="CZK"></option>
+<option value="AUD"></option>
+<option value="RON"></option>
+<option value="SEK"></option>
+<option value="IDR"></option>
+<option value="INR"></option>
+<option value="BRL"></option>
+<option value="RUB"></option>
+<option value="HRK"></option>
+<option value="JPY"></option>
+<option value="THB"></option>
+<option value="CHF"></option>
+<option value="SGD"></option>
+<option value="PLN"></option>
+<option value="BGN"></option>
+<option value="TRY"></option>
+<option value="CNY"></option>
+<option value="NOK"></option>
+<option value="NZD" ></option>
+<option value="ZAR"></option>
+<option value="USD"></option>
+<option value="MXN"></option>
+<option value="ILS"></option>
+<option value="GBP"></option>
+<option value="KRW"></option>
+<option value="MYR"></option>
+<option value="EUR"></option>
+
+*/
 }
