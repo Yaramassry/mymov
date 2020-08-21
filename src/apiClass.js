@@ -25,6 +25,7 @@ export default class apiClass extends React.Component{
         ratesarr2:[],
         ratesarr3:[],
         fetched: false,
+        currencies: [],
         data: {
           labels: [1, 2, 3],
           datasets: [{
@@ -52,15 +53,15 @@ export default class apiClass extends React.Component{
  /* async handleSubmit2(event){
     event.preventDefault();
     console.log("dddkkk");
-   
+
     const url2='https://api.exchangeratesapi.io/latest';
-   
+
     const response2 = await fetch(url2);
-   
+
     const d2 = await response2.json();
     const lab = Object.keys(d2.rates);
     this.setState({r:d2.rates});
-    
+
     console.log("ddd");
 
   }*/
@@ -98,7 +99,7 @@ export default class apiClass extends React.Component{
               toast.error("where is your symbol !!!!?? " , {position:"top-center"});
               return;
               }
-              
+
               if(bb==""){
                 toast.error(" Dear user .... baase !! where is the baaase ? ? !!!" , {position:"top-center"});
                 return;
@@ -127,7 +128,7 @@ export default class apiClass extends React.Component{
 
 
 
-        
+
 
 
         const url =`https://api.exchangeratesapi.io/history?start_at=${s}&end_at=${e}&base=${bb}&symbols=${pp2},${pp},${pp3}`;
@@ -160,7 +161,7 @@ export default class apiClass extends React.Component{
           values2.push(valuePairs[x2][pp2])
         }
 
-        
+
         var values3 = []
         for (var x3 in valuePairs) {
           values3.push(valuePairs[x3][pp3])
@@ -192,7 +193,7 @@ export default class apiClass extends React.Component{
 
 
 
-        this.setState({ratesarr:d.rates,ratesarr2:d.rates,ratesarr3:d.rates, loading:false, fetched: true, data2:data2, data3:data3, 
+        this.setState({ratesarr:d.rates,ratesarr2:d.rates,ratesarr3:d.rates, loading:false, fetched: true, data2:data2, data3:data3,
           data: data , b:bb});
         //this.setState({ratesarr2:d.rates, loading:false, fetched: true, data2: data2 , b:bb});
        // let arr= d.rates ;
@@ -212,15 +213,23 @@ export default class apiClass extends React.Component{
     async componentDidMount(){
 
       this.setState({loading:false});
+      const url='https://api.exchangeratesapi.io/latest';
+
+      const response = await fetch(url);
+
+      const d = await response.json();
+      const currencies = Object.keys(d.rates);
+      currencies.push(d.base);
+      this.setState({currencies:currencies});
    }
 
 
-   
+
 render(){
   let arr = this.state.r;
   const array= this.state.ratesarr;
   const array2= this.state.ratesarr2;
- 
+
   //for (var x in array) { }
   //for (var x2 in array2) { }
   //const pp =document.getElementById("symbol");
@@ -246,8 +255,12 @@ render(){
       )}
 
 
-
-
+      var currencies = []
+      if (this.state.currencies) {
+        currencies = this.state.currencies.map((currency) =>
+          <option key={ currency } value={ currency }></option>
+        );
+      }
 
  return (
      <div className="loginbox">
@@ -266,7 +279,6 @@ render(){
           <input
             id="end"
             type="date"
-            name=""
             required
           />
             <br/>
@@ -275,27 +287,21 @@ render(){
           <input
             id="symbol"
             type="text"
-            name=""
-           
-            onFocus={this.handleSubmit2}
+
+            list="currencies"
             required
-          /> 
+          />
             <h1>Symbol 2 : </h1>
           <input
             id="symbol2"
             type="text"
-            name=""
             list="currencies"
             required
           />
-          <datalist id="currencies">
-      <option value="CAD"></option>
-    </datalist>
              <h1>Symbol 3 : </h1>
           <input
             id="symbol3"
             type="text"
-            name=""
             list="currencies"
             required
           />
@@ -305,12 +311,13 @@ render(){
             <input
               id="B"
               type="text"
-              name=""
               list="currencies"
               required
             />
           <br/><br/>
-        
+          <datalist id="currencies">
+            { currencies }
+          </datalist>
           <button className="button" type="submit" onClick={this.handleSubmit} >
            GO
           </button>
