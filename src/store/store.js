@@ -1,7 +1,7 @@
 import {createStore} from 'redux';
 
 const initialState = {
-    counter :0
+    counter :2
 }
 
 const reducers = (state , action) => {
