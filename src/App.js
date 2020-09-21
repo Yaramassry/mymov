@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import {Provider, provider} from 'react-redux';
 //import './App.css';
 import Toolbar from "./components/Toolbar";
 //import { render } from '@testing-library/react';
 import MovieList from "./MovieList";
 import Table from "./Table";
-import Counter from "./counter.jsx";
+import Counter from "./counter.js";
 import AddMovie from "./AddMovie";
 import Login from "./Login";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -13,17 +14,22 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import Admin from "./Admin";
 import apiClass from "./apiClass";
 import apiClass2 from "./apiClass2";
+import store from "./store/store";
+ 
+
+
 function App() {
   const Home = () => (
     <div>
       <AddMovie />
       <MovieList />
-     
+      <Provider store = {store}>
       <Counter />
-      
+      </Provider>
     </div>
   );
   return (
+   
     <div>
       <Router>
         <Toolbar />
@@ -37,6 +43,7 @@ function App() {
       </Router>
       <Footer />
     </div>
+  
   );
 }
 

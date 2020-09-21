@@ -26,6 +26,8 @@ const toolbar = props =>(
         <h4><Link className="font" style={lstyle} to="/" >ListOfMovies </Link></h4>
        <h4><Link className="font" style={lstyle} to="/login" >Login </Link></h4>
       <h4><Link  className="font" style={lstyle} to="/appLayout" >Admin </Link></h4>
+      <h4><Link  className="font" style={lstyle} to="/api" >Coins </Link></h4>
+      
             
     
 
